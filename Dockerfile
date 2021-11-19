@@ -19,10 +19,10 @@ FROM alpine:3.13.4
 LABEL maintainer="fox.cpp@disroot.org"
 
 RUN apk --no-cache add ca-certificates
-COPY --from=build-env /pkg/data/maddy.conf /data/maddy.conf
+#COPY --from=build-env /pkg/data/maddy.conf /data/maddy.conf
 COPY --from=build-env /pkg/usr/local/bin/maddy /bin/maddy
 COPY --from=build-env /pkg/usr/local/bin/maddyctl /bin/maddyctl
 
 EXPOSE 25 143 993 587 465
-VOLUME ["/data"]
+#VOLUME ["/data"]
 ENTRYPOINT ["/bin/maddy", "-config", "/data/maddy.conf"]
